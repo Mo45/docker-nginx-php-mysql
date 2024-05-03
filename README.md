@@ -17,6 +17,7 @@ All requisites should be available for your distribution. The most important are
 * [Git](https://git-scm.com/downloads)
 * [Docker](https://docs.docker.com/engine/installation/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
+* [Certbot](https://hub.docker.com/r/certbot/certbot)
 
 Check if `docker compose` is already installed by entering the following command : 
 
