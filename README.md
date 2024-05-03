@@ -44,8 +44,8 @@ This project use the following ports :
 | Server     | Port |
 |------------|------|
 | MySQL      | 8989 |
-| Nginx      | 8000 |
-| Nginx SSL  | 3000 |
+| Nginx      | 80   |
+| Nginx SSL  | 443  |
 
 ___
 
