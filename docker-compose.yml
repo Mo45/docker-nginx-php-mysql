@@ -5,9 +5,10 @@ services:
         hostname: ${APP_SLUG}_nginx
         volumes:
             - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
-            - "./etc/ssl:/etc/ssl"
             - "./web:/var/www/html"
             - "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+            - "/etc/letsencrypt:/etc/letsencrypt:ro"
+            - "/tmp/acme-challenge:/tmp/acme-challenge"
         ports:
             - "80:80"
             - "443:443"
@@ -22,6 +23,16 @@ services:
         depends_on:
             - php-fpm
             - mysql
+    letsencrypt:
+        container_name: certbot
+        image: certbot/certbot
+        command: sh -c "certbot certonly --webroot -w /tmp/acme-challenge/ -d ${NGINX_HOST} --text --agree-tos --email ${CERT_EMAIL} --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-chall>
+        entrypoint: ""
+        volumes:
+          - "/etc/letsencrypt:/etc/letsencrypt"
+          - "/tmp/acme-challenge:/tmp/acme-challenge"
+        environment:
+          - TERM=xterm
     php-fpm:
         image: php:${PHP_VERSION}
         container_name: ${APP_SLUG}_php-fpm
