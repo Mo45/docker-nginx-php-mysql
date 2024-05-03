@@ -35,7 +35,6 @@ sudo apt install build-essential
 * [Nginx](https://hub.docker.com/_/nginx/)
 * [MySQL](https://hub.docker.com/_/mysql/)
 * [PHP-FPM](https://hub.docker.com/_/php)
-* [Generate Certificate](https://hub.docker.com/r/jacoelho/generate-certificate/)
 
 You should be careful when installing third party web servers such as MySQL or Nginx.
 
@@ -74,15 +73,7 @@ ___
 
 ## Configure Nginx With SSL Certificates
 
-You can change the host name by editing the `.env` file.
-
-If you modify the host name, do not forget to add it to the `/etc/hosts` file.
-
-1. Generate SSL certificates
-
-    ```sh
-    source .env && docker run --rm -v $(pwd)/etc/ssl:/certificates -e "SERVER=$NGINX_HOST" jacoelho/generate-certificate
-    ```
+1. [HowTo](https://dev.to/mrshanas/https-on-docker-containers-using-nginx-and-letsencrypt-3nfa)
 
 2. Configure Nginx
 
